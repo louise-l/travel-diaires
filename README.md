@@ -10,8 +10,9 @@ L'API est publique, mais une identification est nécéssaire pour certaines acti
 
 Pour accéder à l'API en local, il faut :
 1. Cloner le repo
-2. Lancer les migrations et les seeds : `$ rails db:migrate` puis `$ rails db:seed`
-3. Tester l'API sur le terminal ou postman
+2. Installer les gems `$ bundle install`
+3. Lancer les migrations et les seeds : `$ rails db:migrate` puis `$ rails db:seed`
+4. Tester l'API sur le terminal ou postman
 
 ### SUR POSTMAN.com
 
