@@ -19,17 +19,17 @@ En cours de préparation
 
 ### Identification
 
-Pour l'exercice, certaines informations sur les auteurs est accessible en lecture seule :
-  GET /api/v1/authors
+Pour l'exercice, certaines informations sur les auteurs est accessible en lecture seule :  
+  `GET /api/v1/authors`
 
 Vous pouvez en choisir un. Son email et son token serviront dans les headers pour faire des modifications des données.
 
-*Exemple de header*
-X-Author-Email: allen@gerhold.com
-X-Author-Token: 8Lsbz1gG8SVoocKHbyt3
+*Exemple de header*  
+`X-Author-Email: allen@gerhold.com`  
+`X-Author-Token: 8Lsbz1gG8SVoocKHbyt3`
 
-*Exemple de body pour un nouvel article*
-`{ "title": "Vacances au bord de l'eau", "description": "Description de l'article", "url_cover_picture": "https://tinyurl.com/4hxxsvxb" }
+*Exemple de body pour un nouvel article*  
+`{ "title": "Vacances au bord de l'eau", "description": "Description de l'article", "url_cover_picture": "https://tinyurl.com/4hxxsvxb" }`
 
 ## LECTURE SEULE
 
