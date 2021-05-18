@@ -17,7 +17,7 @@ Pour accéder à l'API en local, il faut :
 
 En cours de préparation
 
-#### Identification
+### Identification
 
 Pour l'exercice, certaines informations sur les auteurs est accessible en lecture seule :
   GET /api/v1/authors
@@ -29,7 +29,7 @@ X-Author-Email: allen@gerhold.com
 X-Author-Token: 8Lsbz1gG8SVoocKHbyt3
 
 *Exemple de body pour un nouvel article*
-{ "title": "Vacances au bord de l'eau", "description": "Description de l'article", "url_cover_picture": "https://tinyurl.com/4hxxsvxb" }
+`{ "title": "Vacances au bord de l'eau", "description": "Description de l'article", "url_cover_picture": "https://tinyurl.com/4hxxsvxb" }
 
 ## LECTURE SEULE
 
