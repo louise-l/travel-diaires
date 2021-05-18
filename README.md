@@ -37,17 +37,17 @@ X-Author-Token: 8Lsbz1gG8SVoocKHbyt3
 
 - Lister tous les articles, le plus récent en premier  
     `GET /api/v1/articles`
-- Lister tous les articles, le mieux noté en premier
-    > GET /api/v1/articles/order
-- Voir un article
-    GET /api/v1/articles/:id
+- Lister tous les articles, le mieux noté en premier  
+    `GET /api/v1/articles/order`
+- Voir un article  
+    `GET /api/v1/articles/:id`
 
 ### CATEGORIES
 
-- Voir toutes les catégories et les titres des articles correspondants
-    GET /api/v1/categories
-- Voir une catégories et ses articles complets
-    GET /api/v1/categories/:id
+- Voir toutes les catégories et les titres des articles correspondants  
+    `GET /api/v1/categories` 
+- Voir une catégories et ses articles complets  
+    `GET /api/v1/categories/:id`
 
 ## ACTIONS UTILISATEUR
 
@@ -55,17 +55,17 @@ Une identification est nécessaire. On ne peut avoir une action que sur ses prop
 
 ### ARTICLES
 
-- Créer un nouvel article (le titre, la photo et le contenu sont obligatoires)
-      POST   /api/v1/articles/
-- Modifier un article
-      PATCH  /api/v1/articles/:id
-- Supprimer un article
-      DELETE /api/v1/articles/:id
+- Créer un nouvel article (le titre, la photo et le contenu sont obligatoires)  
+      `POST   /api/v1/articles/`
+- Modifier un article  
+      `PATCH  /api/v1/articles/:id`
+- Supprimer un article  
+      `DELETE /api/v1/articles/:id`
 
 ### COMMENTAIRES
 
-- Publier un commentaire (possible une seule fois par utilisateur par article, et pas sur ses propres articles. Le texte est facultatif, la note est obligatoire, un entier entre 0 et 5)
-    POST /api/v1/articles/article_id:/reviews
-- Supprimer un commentaire (possible seulement si on est l'auteur du commentaire)
-    DELETE /api/v1/articles/article_id:/:id
+- Publier un commentaire (possible une seule fois par utilisateur par article, et pas sur ses propres articles. Le texte est facultatif, la note est obligatoire, un entier entre 0 et 5)  
+    `POST /api/v1/articles/article_id:/reviews`
+- Supprimer un commentaire (possible seulement si on est l'auteur du commentaire)  
+    `DELETE /api/v1/articles/article_id:/:id`
 
