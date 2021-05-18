@@ -18,7 +18,7 @@ Pour accéder à l'API en local, il faut :
 
 En cours de préparation
 
-### Identification
+### IDENTIFICATION
 
 Pour l'exercice, certaines informations sur les auteurs est accessible en lecture seule :  
   `GET /api/v1/authors`
