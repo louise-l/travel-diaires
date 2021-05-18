@@ -1,24 +1,71 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Cette API permet d'accéder aux données d'un blog de voyage. Les visiteurs peuvent librement consulter les articles, en les listant par date de publication, par meilleur note ou par catégorie. Un utilisateur connecté (un auteur) peut maintenant publier et gérer ses articles et ses commentaires.
 
-Things you may want to cover:
+L'API est publique, mais une identification est nécéssaire pour certaines actions, détaillées ci dessous.
 
-* Ruby version
+## MISE EN PLACE
 
-* System dependencies
+### LOCAL
 
-* Configuration
+Pour accéder à l'API en local, il faut :
+1. Cloner le repo
+2. Lancer les migrations et les seeds : `$ rails db:migrate` puis `$ rails db:seed`
+3. Tester l'API sur le terminal ou postman
 
-* Database creation
+### SUR POSTMAN.com
 
-* Database initialization
+En cours de préparation
 
-* How to run the test suite
+#### Identification
 
-* Services (job queues, cache servers, search engines, etc.)
+Pour l'exercice, certaines informations sur les auteurs est accessible en lecture seule :
+  GET /api/v1/authors
 
-* Deployment instructions
+Vous pouvez en choisir un. Son email et son token serviront dans les headers pour faire des modifications des données.
 
-* ...
+*Exemple de header*
+X-Author-Email: allen@gerhold.com
+X-Author-Token: 8Lsbz1gG8SVoocKHbyt3
+
+*Exemple de body pour un nouvel article*
+{ "title": "Vacances au bord de l'eau", "description": "Description de l'article", "url_cover_picture": "https://tinyurl.com/4hxxsvxb" }
+
+## LECTURE SEULE
+
+### ARTICLES
+
+- Lister tous les articles, le plus récent en premier
+    GET /api/v1/articles
+- Lister tous les articles, le mieux noté en premier
+    GET /api/v1/articles/order
+- Voir un article
+    GET /api/v1/articles/:id
+
+### CATEGORIES
+
+- Voir toutes les catégories et les titres des articles correspondants
+    GET /api/v1/categories
+- Voir une catégories et ses articles complets
+    GET /api/v1/categories/:id
+
+## ACTIONS UTILISATEUR
+
+Une identification est nécessaire. On ne peut avoir une action que sur ses propres articles. Voir plus haut pour avoir les identifiants
+
+### ARTICLES
+
+- Créer un nouvel article (le titre, la photo et le contenu sont obligatoires)
+      POST   /api/v1/articles/
+- Modifier un article
+      PATCH  /api/v1/articles/:id
+- Supprimer un article
+      DELETE /api/v1/articles/:id
+
+### COMMENTAIRES
+
+- Publier un commentaire (possible une seule fois par utilisateur par article, et pas sur ses propres articles. Le texte est facultatif, la note est obligatoire, un entier entre 0 et 5)
+    POST /api/v1/articles/article_id:/reviews
+- Supprimer un commentaire (possible seulement si on est l'auteur du commentaire)
+    DELETE /api/v1/articles/article_id:/:id
+

@@ -34,21 +34,18 @@ puts "#{Category.count} categories created"
 puts "Creating authors"
 
   10.times do 
-    Author.create!(username: Faker::Internet.username, password: Faker::Internet.password)
+    Author.create!(username: Faker::Internet.username, password: Faker::Internet.password, email: Faker::Internet.email)
     puts "."
   end 
 
 puts "#{Author.count} authors created"
 
-
-
-
 puts "Creating articles + connect with categories and reviews"
 
   Author.all.each_with_index do |author, index|
     rand(2..4).times do 
-      Article.create!(title: Faker::Book.title, description: Faker::Lorem.paragraphs, url_cover_picture: "https://source.unsplash.com/random/1200x700/?backpacking", author: author, created_at: Time.current - index.day)
-      # je sais que l'image c'est pas top car elle va toujours renvoyer une différente, mais j'ai fait ainsi pour la simplicité de l'exemple
+      url = RestClient.get("https://source.unsplash.com/random/1200x700/?backpacking")
+      Article.create!(title: Faker::Address.country, description: Faker::Lorem.sentence(word_count: 80), url_cover_picture: url.request.url, author: author, created_at: Time.current - index.day)
       puts "."
     end
   end

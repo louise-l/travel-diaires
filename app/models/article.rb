@@ -1,8 +1,13 @@
 class Article < ApplicationRecord
   belongs_to :author
   has_many :reviews, dependent: :destroy
-  has_many :article_categories
+  has_many :article_categories, dependent: :destroy
   has_many :categories, through: :article_categories
+  
+  validates :title, presence: true
+  validates :description, presence: true
+  validates :url_cover_picture, presence: true
+
 
   def calc_score
     scores = []
