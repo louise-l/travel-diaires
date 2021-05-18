@@ -35,7 +35,7 @@ X-Author-Token: 8Lsbz1gG8SVoocKHbyt3
 
 ### ARTICLES
 
-- Lister tous les articles, le plus récent en premier
+- Lister tous les articles, le plus récent en premier  
     `GET /api/v1/articles`
 - Lister tous les articles, le mieux noté en premier
     > GET /api/v1/articles/order
