@@ -69,3 +69,6 @@ Une identification est nécessaire. On ne peut avoir une action que sur ses prop
 - Supprimer un commentaire (possible seulement si on est l'auteur du commentaire)  
     `DELETE /api/v1/articles/article_id:/:id`
 
+
+
+A bientôt pour le debrief ! ٩(◕‿◕｡)۶	
