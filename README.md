@@ -16,10 +16,10 @@ Pour accéder à l'API en local, il faut :
 
 ### IDENTIFICATION
 
-Pour l'exercice, certaines informations sur les auteurs est accessible en lecture seule :  
+Pour pouvoir utiliser l'API il faut des données sur l'utilisateur, qui sont rendues publiques, pour la bonne cause de l'exercice. On trouve ces données sur   
   `GET /api/v1/authors`
 
-Vous pouvez en choisir un. Son email et son token serviront dans les headers pour faire des modifications des données.
+Choisissez un utilisateur. Son email et son token serviront dans les headers pour faire des modifications des données.
 
 *Exemple de header*  
 `X-Author-Email: allen@gerhold.com`  
