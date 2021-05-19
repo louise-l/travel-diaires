@@ -51,7 +51,7 @@ Choisissez un utilisateur. Son email et son token serviront dans les headers pou
 
 ## ACTIONS UTILISATEUR
 
-Une identification est nécessaire. On ne peut avoir une action que sur ses propres articles. Voir plus haut pour avoir les identifiants
+Une identification est nécessaire. On ne peut avoir une action que sur ses propres articles et ses propres commentaires. Voir plus haut pour avoir les identifiants
 
 ### ARTICLES
 
