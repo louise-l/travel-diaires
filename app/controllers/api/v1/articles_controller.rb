@@ -1,7 +1,5 @@
 class Api::V1::ArticlesController < ApplicationController
   skip_before_action :authenticate_author!, only: [:index, :show, :order]
-  #acts_as_token_authentication_handler_for Author, except: [:index, :show, :order]
-
   before_action :set_article, only: [:show, :update, :destroy]
 
 
@@ -14,9 +12,6 @@ class Api::V1::ArticlesController < ApplicationController
     @articles = Article.order(score: :desc)
   end
 
-  def show
-  end
-
   def new
     # @article = Article.new(article_params)
   end
@@ -24,8 +19,9 @@ class Api::V1::ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     @article.author = current_author
+    add_categories
     if @article.save
-      render :show
+      redirect_to api_v1_article_path(@article)
     else
       render_error
     end
@@ -36,28 +32,32 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def update
-    if require_permission && @article.update(article_params)
+    if is_owner? && @article.update(article_params)
+      # gérer les catégories, on détruit tout et on rajoute petit à petit
+      @article.categories.destroy_all
+      add_categories
+      @article.save
       # rajouter un message de validation
-      render :show
+      redirect_to api_v1_article_path(@article)
     else
       render_error
     end
   end
 
   def destroy
-    if require_permission
+    if is_owner?
       @article.destroy
       # message de confirmation
-      # je sais pas trop comment rediriger ici ... en normal j'aurais fait un redirect_to articles_path
+      redirect_to api_v1_articles_path
     else
       # message derreur
-      render :show
+      render_error
     end
   end
 
   private 
 
-  def require_permission
+  def is_owner?
     current_author == @article.author ? true : false
   end
 
@@ -66,19 +66,19 @@ class Api::V1::ArticlesController < ApplicationController
   end 
   
   def article_params
-    params.require(:article).permit(:title, :description, :url_cover_picture)
+    params.require(:article).permit(:title, :description, :url_cover_picture, :category_ids)
   end
 
   def render_error
     render json: { errors: [] } #la je n'arrive pas à gérer les erreurs et savoir quoi afficher
   end
+
+  def add_categories
+    @category_array = params[:category_ids]
+    @category_array.each do |cat|
+      @category = Category.find(cat)
+      # ajouter les categories dans l'article
+      @article.categories << @category
+    end
+  end
 end
-
-
-
-# curl -i -X PATCH                                        \
-#        -H 'Content-Type: application/json'              \
-#        -H 'X-Author-Email: lanita@runolfsson-schuppe.info'   \
-#        -H 'X-Author-Token: ynD8ogzsT5xxUBy1aEUB'          \
-#        -d '{ "title": "New name" }'    \
-#        http://localhost:3000/api/v1/articles/1

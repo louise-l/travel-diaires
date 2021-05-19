@@ -14,10 +14,6 @@ Pour accéder à l'API en local, il faut :
 3. Lancer les migrations et les seeds : `$ rails db:migrate` puis `$ rails db:seed`
 4. Tester l'API sur le terminal ou postman
 
-### SUR POSTMAN.com
-
-En cours de préparation
-
 ### IDENTIFICATION
 
 Pour l'exercice, certaines informations sur les auteurs est accessible en lecture seule :  
@@ -30,7 +26,10 @@ Vous pouvez en choisir un. Son email et son token serviront dans les headers pou
 `X-Author-Token: 8Lsbz1gG8SVoocKHbyt3`
 
 *Exemple de body pour un nouvel article*  
-`{ "title": "Vacances au bord de l'eau", "description": "Description de l'article", "url_cover_picture": "https://tinyurl.com/4hxxsvxb" }`
+`{ "title": "Vacances au bord de l'eau", "description": "Description de l'article", "url_cover_picture": "https://tinyurl.com/4hxxsvxb", "category_ids": [2,3]}`
+
+*Exemple de body pour un nouveau commentaire*  
+`{ "rate": 0, "comment": "LAME !!!!!"}`
 
 ## LECTURE SEULE
 

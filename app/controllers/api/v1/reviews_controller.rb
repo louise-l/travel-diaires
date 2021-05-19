@@ -5,27 +5,32 @@ class Api::V1::ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.author = current_author
     @review.article = @article
-
-    if first_review? && @review.save
+    # avant de sauvegarder, on vérifie que c'est la première review de la personne sur l'article, et qu'elle n'en est pas propriétaire
+    if first_review? && !is_owner_article? 
+      if @review.save
       # on met à jour le score moyen de l'article
+      # mais je sais pas POURQUOI ça ne marche pas ... 
       @article.calc_score
       redirect_to api_v1_article_path(@review.article)
+      else 
+        render_error
+      end
     else
       # ajouter un message d'erreur
-      redirect_to api_v1_article_path(@review.article)
+      render_error
     end
   end
 
   def destroy
     @review = Review.find(params[:id])
-    if require_permission
+    if is_owner?
       @review.destroy
       @article.calc_score
       # ajouter message de confirmation
       redirect_to api_v1_article_path(@review.article)
     else
       # ajouter message derreur
-      redirect_to api_v1_article_path(@review.article)
+      render_error
     end
   end
 
@@ -48,8 +53,13 @@ class Api::V1::ReviewsController < ApplicationController
     render json: { errors: [] } #la je n'arrive pas à gérer les erreurs et savoir quoi afficher
   end
 
-  def require_permission
+  def is_owner?
     current_author == @review.author ? true : false
+  end
+
+  def is_owner_article?
+    current_author == @article.author ? true : false
+
   end
 
   def set_article

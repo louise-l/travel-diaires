@@ -19,7 +19,7 @@ class Article < ApplicationRecord
     else
       average = scores.sum.to_f/scores.length
     end
-    self.score = average
+    self.score = scores.sum.to_f/scores.length
     self.save
   end
 
